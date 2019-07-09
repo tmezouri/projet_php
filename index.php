@@ -6,6 +6,9 @@ if (isset($_GET['action']))
     if (!empty($_POST['title']) && !empty($_POST['content']))
       addPost($_POST['title'], $_POST['content']);
   }
+  if ($_GET['action'] == 'textEditor') {
+    textEditor();
+  }
 }
 else
   listPosts();

@@ -3,14 +3,7 @@
 
 <?php ob_start(); ?>
 
-<form  action="index.php?action=addPost" method="post">
-	<label>Titre : </label>
-	<input type="text" name="title">
-	<label>Texte : </label>
-	<input type="text" name="content">
-	<input type="submit" value="poster">
-</form>
-
+<a href="index.php?action=textEditor">Editeur de texte</a>
 <p>Derniers billets du blog :</p>
 
 <?php

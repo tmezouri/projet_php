@@ -21,3 +21,8 @@ function addPost($title, $content)
 	else
 		header('location: index.php');
 }
+
+function textEditor()
+{
+		require('view/textEditorView.php');
+}
