@@ -10,8 +10,8 @@
 while ($data = $posts->fetch())
 {
 ?>
-	<h3><?= htmlspecialchars($data['title'])?> <em>le <?= $data['publicationDate'] ?></em></h3>
-	<p><?= htmlspecialchars($data['content']) ?></p>
+	<h3><?= htmlspecialchars($data['title'])?> le <?= $data['publicationDate'] ?></h3>
+	<p><?= $data['content'] ?></p>
 	<a href="index.php?action=post&amp;postId=<?= $data['id'] ?>">Commentaires</a>
 <?php
 }

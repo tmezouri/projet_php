@@ -25,14 +25,88 @@
 						<a class="nav-link" href="index.php">Accueil</a>
 					</li>
 					<li class="nav-item rounded">
-						<a class="nav-link" href="#publications">Publications</a>
+						<a class="nav-link" href="index.php?action=listPosts">Publications</a>
 					</li>
 					<li class="nav-item rounded">
 						<a class="nav-link" href="#contact">Contact</a>
 					</li>
+					<li class="nav-item rounded">
+						<a type="button" class="nav-link" data-toggle="modal" data-target="#myModal">Connexion</a>
+					</li>
 				</ul>
 			</div>
 		</nav>
+
+		<div class="modal" id="myModal">
+			<div class="modal-dialog">
+				<div class="modal-content">
+
+				<div class="modal-header">
+				<h4 class="modal-title">Connexion</h4>
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+
+				<div class="modal-body">
+					<form action="">
+
+						<div class="form-group">
+
+							<label for="email">Adresse Mail :</label>
+							<input type="email" class="form-control" id="email">
+						</div>
+
+						<div class="form-group">
+							<label for="pwd">Mot de Passe :</label>
+							<input type="password" class="form-control" id="pwd">
+						</div>
+
+						<div class="form-group form-check">
+							<label class="form-check-label">
+								<input class="form-check-input" type="checkbox"> Se souvenir de moi
+							</label>
+						</div>
+
+						<button type="submit" class="btn btn-dark">Connexion</button>
+						<hr>
+					</form>
+				</div>
+
+
+
+				<div class="modal-header">
+					<h4 class="modal-title">Inscription</h4>
+				</div>
+
+				<div class="modal-body">
+						<form action="">
+
+							<div class="form-group">
+								<label for="pwd">Nom d'utilisateur :</label>
+								<input type="password" class="form-control" id="pwd">
+							</div>
+
+							<div class="form-group">
+								<label for="email">Adresse mail :</label>
+								<input type="email" class="form-control" id="email">
+							</div>
+
+							<div class="form-group">
+								<label for="pwd">Mot de passe :</label>
+								<input type="password" class="form-control" id="pwd">
+							</div>
+
+							<div class="form-group">
+								<label for="pwd">Confirmation du mot de passe :</label>
+								<input type="password" class="form-control" id="pwd">
+							</div>
+
+							<button type="submit" class="btn btn-dark">Inscription</button>
+
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
 
 		<?= $content ?>
 
