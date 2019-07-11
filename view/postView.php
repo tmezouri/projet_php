@@ -2,7 +2,6 @@
 
 <?php ob_start(); ?>
 
-<h1>Mon blog !</h1>
 <p><a href="index.php?action=listPosts">Retour à la liste des billets</a></p>
 
 <h3>

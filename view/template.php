@@ -71,33 +71,31 @@
 					</form>
 				</div>
 
-
-
 				<div class="modal-header">
 					<h4 class="modal-title">Inscription</h4>
 				</div>
 
 				<div class="modal-body">
-						<form action="">
+						<form action="index.php?action=registration" method="post">
 
 							<div class="form-group">
-								<label for="pwd">Nom d'utilisateur :</label>
-								<input type="password" class="form-control" id="pwd">
+								<label>Nom d'utilisateur :</label>
+								<input type="text" class="form-control" name="pseudo" maxlength="50" required>
 							</div>
 
 							<div class="form-group">
-								<label for="email">Adresse mail :</label>
-								<input type="email" class="form-control" id="email">
+								<label>Adresse mail :</label>
+								<input type="email" class="form-control" name="email" required>
 							</div>
 
 							<div class="form-group">
-								<label for="pwd">Mot de passe :</label>
-								<input type="password" class="form-control" id="pwd">
+								<label>Mot de passe :</label>
+								<input type="password" class="form-control" name="pass" maxlength="32" required>
 							</div>
 
 							<div class="form-group">
-								<label for="pwd">Confirmation du mot de passe :</label>
-								<input type="password" class="form-control" id="pwd">
+								<label>Confirmation du mot de passe :</label>
+								<input type="password" class="form-control" name="passConfirm" maxlength="32" required>
 							</div>
 
 							<button type="submit" class="btn btn-dark">Inscription</button>

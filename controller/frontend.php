@@ -2,6 +2,7 @@
 
 require_once('model/PostManager.php');
 require_once('model/CommentManager.php');
+require_once('model/MembersManager.php');
 
 function listPosts()
 {
@@ -29,7 +30,7 @@ function addPost($title, $content)
 	$post = $postManager->addPost($title, $content);
 
 	if($post === false)
-		echo "<p>Impossible d\'ajouter le post !</p>";
+		throw new Exception('Impossible d\'ajouter le post !');
 	else
 		header('location: index.php');
 }
@@ -40,10 +41,29 @@ function addComment($postId, $author, $comment)
 
 	$affectedLines = $commentManager->postComment($postId, $author, $comment);
 
+	if($affectedLines === false)
+		throw new Exception('Impossible d\'ajouter le commentaire !');
+	else
 		header('location: index.php?action=post&postId=' . $postId);
 }
 
 function textEditor()
 {
 		require('view/textEditorView.php');
+}
+
+function registration()
+{
+	$membersManager = new \JeanForteroche\Blog\Model\MembersManager();
+
+	$submitOk = $membersManager->availableName($_POST['pseudo']);
+
+	if($submitOk === true)
+	{
+		$hashed_pass = password_hash($_POST['pass'], PASSWORD_DEFAULT);
+		$newMember = $membersManager->addMember($_POST['pseudo'], $hashed_pass, $_POST['email']);
+		header('location: index.php?action=listPosts');
+	}
+	else
+		throw new Exception('Ce nom d\'utilisateur est déjà pris');
 }
