@@ -1,5 +1,8 @@
-<?php $title = 'Jean Forteroche'; ?>
+<?php
+	session_start();
+?>
 
+<?php $title = 'Jean Forteroche'; ?>
 
 <?php ob_start(); ?>
 

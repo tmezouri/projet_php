@@ -1,5 +1,8 @@
-<?php $title = 'Editeur de texte'; ?>
+<?php
+	session_start();
+?>
 
+<?php $title = 'Editeur de texte'; ?>
 
 <?php ob_start(); ?>
 

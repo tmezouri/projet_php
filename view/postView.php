@@ -1,3 +1,7 @@
+<?php
+	session_start();
+?>
+
 <?php $title = htmlspecialchars($post['title']); ?>
 
 <?php ob_start(); ?>
@@ -14,11 +18,18 @@
 
 <h2>Commentaires</h2>
 
-<form action="index.php?action=addComment&amp;postId=<?= $post['id'] ?>" method="post">
-	<label> auteur : <input type="text" name="author"></label>
-	<label> commentaire : <input type="text" name="comment"></label>
-	<input type="submit" value="poster">
-</form>
+<?php
+	if (isset($_SESSION['id']) AND isset($_SESSION['pseudo']))
+	{
+?>
+		<form action="index.php?action=addComment&amp;postId=<?= $post['id'] ?>" method="post">
+			<input type="text" name="author" value="<?= $_SESSION['pseudo'];?>" hidden>
+			<label> commentaire : <input type="text" name="comment"></label>
+			<input type="submit" value="poster">
+		</form>
+<?php
+	}
+?>
 
 <?php
 
@@ -31,7 +42,6 @@ while ($comment = $comments->fetch())
 }
 
 ?>
-
 
 <?php
 	$content = ob_get_clean();

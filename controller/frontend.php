@@ -72,24 +72,55 @@ function connection()
 {
 	$membersManager = new \JeanForteroche\Blog\Model\MembersManager();
 
-	$result = $membersManager->connection($_POST['pseudo']);
-
-	$isPasswordCorrect = password_verify($_POST['pass'], $result['pass']);
-
-	if (!$result)
-		throw new Exception('Mauvais identifiant ou mot de passe !');
-	else
+	if (isset($_COOKIE['pseudo']) && isset($_COOKIE['pass']))
 	{
-		if ($isPasswordCorrect) {
-        session_start();
-        $_SESSION['id'] = $result['id'];
-        $_SESSION['pseudo'] = $_POST['pseudo'];
-				header('location: index.php?action=listPosts');
-    }
-    else {
+		$result = $membersManager->connection($_COOKIE['pseudo']);
+
+		$isPasswordCorrect = password_verify($_COOKIE['pass'], $result['pass']);
+
+		if (!$result)
 			throw new Exception('Mauvais identifiant ou mot de passe !');
-    }
+		else
+		{
+			if ($isPasswordCorrect) {
+					session_start();
+					$_SESSION['id'] = $result['id'];
+					$_SESSION['pseudo'] = $_COOKIE['pseudo'];
+					header('location: index.php?action=listPosts');
+			}
+			else {
+				throw new Exception('Mauvais identifiant ou mot de passe !');
+			}
+		}
 	}
+
+	else {
+		$result = $membersManager->connection($_POST['pseudo']);
+
+		$isPasswordCorrect = password_verify($_POST['pass'], $result['pass']);
+
+		if (!$result)
+			throw new Exception('Mauvais identifiant ou mot de passe !');
+		else
+		{
+			if ($isPasswordCorrect) {
+					session_start();
+					$_SESSION['id'] = $result['id'];
+					$_SESSION['pseudo'] = $_POST['pseudo'];
+					if ($_POST['auto'])
+					{
+						setcookie('pseudo', $pseudo, time() + 365*24*3600);
+						setcookie('pass', $result['pass'], time() + 365*24*3600);
+					}
+					header('location: index.php?action=listPosts');
+			}
+			else {
+				throw new Exception('Mauvais identifiant ou mot de passe !');
+			}
+		}
+	}
+
+
 }
 
 function logOut()
