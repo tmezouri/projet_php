@@ -38,6 +38,15 @@ while ($comment = $comments->fetch())
 ?>
     <p><?= htmlspecialchars($comment['author']) ?> le <?= $comment['commentDate'] ?></p>
     <p><?= nl2br(htmlspecialchars($comment['comment'])) ?></p>
+		<?php
+			if (isset($_SESSION['id']) AND isset($_SESSION['pseudo']))
+			{
+		?>
+		<a class="btn btn-dark reportComment" href="index.php?action=reportComment&amp;commentId=<?= $comment['id'] ?>&amp;postId=<?= $post['id'] ?>"><i class="fas fa-exclamation-circle"></i></i></a>
+		<?php
+			}
+		?>
+
 <?php
 }
 

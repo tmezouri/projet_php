@@ -65,6 +65,14 @@ try {
     elseif ($_GET['action'] == 'logOut') {
       logOut();
     }
+
+    elseif ($_GET['action'] == 'reportComment')
+    {
+      if (isset($_GET['commentId']) && $_GET['commentId'] > 0)
+        reportComment();
+      else
+        throw new Exception('Aucun identifiant de billet envoyé');
+    }
   }
   else
     listPosts();

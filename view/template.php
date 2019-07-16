@@ -7,6 +7,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 		<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js"></script>
+		<script src="https://kit.fontawesome.com/aa9f9dbeb1.js"></script>
 		<script>tinymce.init({selector:'#textEditor'});</script>
 
 		<title><?= $title ?></title>
@@ -17,7 +18,7 @@
 		<?php
 			include 'navbar.php';
 		?>
-		
+
 		<?= $content ?>
 
 	</body>

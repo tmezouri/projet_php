@@ -119,19 +119,31 @@ function connection()
 			}
 		}
 	}
-
-
 }
 
 function logOut()
 {
-session_start();
+	session_start();
 
-$_SESSION = array();
-session_destroy();
+	$_SESSION = array();
+	session_destroy();
 
-setcookie('login', '');
-setcookie('pass_hache', '');
+	setcookie('login', '');
+	setcookie('pass_hache', '');
 
-header('location: index.php?action=listPosts');
+	header('location: index.php?action=listPosts');
+}
+
+function reportComment()
+{
+	$commentManager = new \JeanForteroche\Blog\Model\CommentManager();
+
+	$affectedComment = $commentManager->reportComment($_GET['commentId']);
+
+	if (!$affectedComment)
+		throw new Exception('Mauvais identifiant de billet envoyé !');
+	else {
+		$postId = $_GET['postId'];
+		header("location: index.php?action=post&postId=$postId");
+	}
 }
