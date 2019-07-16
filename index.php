@@ -53,6 +53,17 @@ try {
         else
           throw new Exception('L\'adresse mail saisie est invalide');
       }
+      else
+        throw new Exception('Les mots de passe saisie ne sont pas identiques');
+    }
+
+    elseif($_GET['action'] == 'connection')
+    {
+      connection();
+    }
+
+    elseif ($_GET['action'] == 'logOut') {
+      logOut();
     }
   }
   else

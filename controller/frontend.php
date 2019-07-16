@@ -67,3 +67,40 @@ function registration()
 	else
 		throw new Exception('Ce nom d\'utilisateur est déjà pris');
 }
+
+function connection()
+{
+	$membersManager = new \JeanForteroche\Blog\Model\MembersManager();
+
+	$result = $membersManager->connection($_POST['pseudo']);
+
+	$isPasswordCorrect = password_verify($_POST['pass'], $result['pass']);
+
+	if (!$result)
+		throw new Exception('Mauvais identifiant ou mot de passe !');
+	else
+	{
+		if ($isPasswordCorrect) {
+        session_start();
+        $_SESSION['id'] = $result['id'];
+        $_SESSION['pseudo'] = $_POST['pseudo'];
+				header('location: index.php?action=listPosts');
+    }
+    else {
+			throw new Exception('Mauvais identifiant ou mot de passe !');
+    }
+	}
+}
+
+function logOut()
+{
+session_start();
+
+$_SESSION = array();
+session_destroy();
+
+setcookie('login', '');
+setcookie('pass_hache', '');
+
+header('location: index.php?action=listPosts');
+}

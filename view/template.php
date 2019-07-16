@@ -1,3 +1,8 @@
+<?php
+	session_start();
+
+?>
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -30,9 +35,23 @@
 					<li class="nav-item rounded">
 						<a class="nav-link" href="#contact">Contact</a>
 					</li>
-					<li class="nav-item rounded">
-						<a type="button" class="nav-link" data-toggle="modal" data-target="#myModal">Connexion</a>
-					</li>
+					<?php
+						if (isset($_SESSION['id']) AND isset($_SESSION['pseudo']))
+						{
+							echo "
+							<li class='nav-item rounded'>
+								<a class='nav-link' href='index.php?action=logOut'>Deconnexion</a>
+							</li>
+							";
+						}
+						else {
+							echo "
+							<li class='nav-item rounded'>
+								<a type='button' class='nav-link' data-toggle='modal' data-target='#myModal'>Connexion</a>
+							</li>
+							";
+						}
+						?>
 				</ul>
 			</div>
 		</nav>
@@ -47,17 +66,16 @@
 				</div>
 
 				<div class="modal-body">
-					<form action="">
+					<form action="index.php?action=connection" method="post">
 
 						<div class="form-group">
-
-							<label for="email">Adresse Mail :</label>
-							<input type="email" class="form-control" id="email">
+							<label>Nom d'utilisateur :</label>
+							<input type="text" class="form-control" name="pseudo" maxlength="50" required>
 						</div>
 
 						<div class="form-group">
-							<label for="pwd">Mot de Passe :</label>
-							<input type="password" class="form-control" id="pwd">
+							<label>Mot de passe :</label>
+							<input type="password" class="form-control" name="pass" maxlength="32" required>
 						</div>
 
 						<div class="form-group form-check">
