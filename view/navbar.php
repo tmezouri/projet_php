@@ -31,6 +31,16 @@
           ";
         }
         ?>
+        <?php
+          if (isset($_SESSION['pseudo']) AND $_SESSION['pseudo'] === "admin")
+          {
+        ?>
+            <li class='nav-item rounded'>
+              <a class='nav-link' href='admin'>Administration</a>
+            </li>
+        <?php
+          }
+        ?>
     </ul>
   </div>
 </nav>

@@ -23,18 +23,6 @@ function post()
 	require('view/postView.php');
 }
 
-function addPost($title, $content)
-{
-	$postManager = new \JeanForteroche\Blog\Model\PostManager();
-
-	$post = $postManager->addPost($title, $content);
-
-	if($post === false)
-		throw new Exception('Impossible d\'ajouter le post !');
-	else
-		header('location: index.php');
-}
-
 function addComment($postId, $author, $comment)
 {
 	$commentManager = new \JeanForteroche\Blog\Model\CommentManager();
@@ -45,11 +33,6 @@ function addComment($postId, $author, $comment)
 		throw new Exception('Impossible d\'ajouter le commentaire !');
 	else
 		header('location: index.php?action=post&postId=' . $postId);
-}
-
-function textEditor()
-{
-		require('view/textEditorView.php');
 }
 
 function registration()

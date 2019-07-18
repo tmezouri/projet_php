@@ -6,8 +6,7 @@
 
 <?php ob_start(); ?>
 
-<a href="index.php?action=textEditor">Editeur de texte</a>
-<p>Derniers billets du blog :</p>
+<h2>Dernières publications :</h2>
 
 <?php
 while ($data = $posts->fetch())

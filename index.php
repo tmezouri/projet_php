@@ -15,10 +15,6 @@ try {
         throw new Exception('Tous les champs ne sont pas remplis !');
     }
 
-    elseif ($_GET['action'] == 'textEditor') {
-      textEditor();
-    }
-
     elseif ($_GET['action'] == 'post')
 		{
 			if (isset($_GET['postId']) && $_GET['postId'] > 0)

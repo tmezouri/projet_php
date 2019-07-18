@@ -9,11 +9,11 @@
 <p><a href="index.php?action=listPosts">Retour à la liste des billets</a></p>
 
 <h3>
-	<?= htmlspecialchars($post['title']) ?>
+	<?= $post['title'] ?>
 	<em>le <?= $post['publicationDate'] ?></em>
 </h3>
 <p>
-	<?= htmlspecialchars($post['content']) ?>
+	<?= $post['content'] ?>
 </p>
 
 <h2>Commentaires</h2>
