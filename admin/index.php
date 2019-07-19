@@ -47,6 +47,19 @@ try {
       else
         throw new Exception('Aucun identifiant de billet envoyé');
     }
+
+    elseif ($_GET['action'] == 'reportedComments')
+    {
+      reportedComments();
+    }
+
+    elseif ($_GET['action'] == 'deleteComment')
+    {
+      if (isset($_GET['commentId']) && $_GET['commentId'] > 0)
+        deleteComment($_GET['commentId']);
+      else
+        throw new Exception('Aucun identifiant de commentaire envoyé');
+    }
   }
   else
     admin();

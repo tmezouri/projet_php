@@ -67,3 +67,26 @@ function deletePost($postId)
 	else
 		header('location: ../index.php?action=listPosts');
 }
+
+function reportedComments()
+{
+	$commentManager = new \JeanForteroche\Blog\Model\Admin\CommentManager();
+
+	$reportedComments = $commentManager->reportedComments();
+
+	if($reportedComments === false)
+		throw new Exception('Aucun commentaires n\'a été signalé');
+	else
+		require('view/reportView.php');
+}
+
+function deleteComment($commentId)
+{
+	$commentManager = new \JeanForteroche\Blog\Model\Admin\CommentManager();
+	$affectedComment = $commentManager->deleteComment($commentId);
+
+	if($affectedComment === false)
+		throw new Exception('Impossible de supprimer le commentaire !');
+	else
+		header('location: index.php?action=reportedComments');
+}

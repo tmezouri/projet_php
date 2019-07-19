@@ -33,20 +33,20 @@ class PostManager extends Manager
 		return $newPost;
 	}
 
-	public function modifyPost($postid, $title, $content)
+	public function modifyPost($postId, $title, $content)
 	{
 		$db = $this->dbConnect();
 		$post = $db->prepare('UPDATE posts SET title = :title, content = :content WHERE id = :id');
-		$affectedPost = $post->execute(array('id' => $postid, 'title' => $title, 'content' => $content));
+		$affectedPost = $post->execute(array('id' => $postId, 'title' => $title, 'content' => $content));
 
 		return $affectedPost;
 	}
 
-	public function deletePost($postid)
+	public function deletePost($postId)
 	{
 		$db = $this->dbConnect();
 		$post = $db->prepare('DELETE FROM posts WHERE id = :id');
-		$affectedPost = $post->execute(array('id' => $postid));
+		$affectedPost = $post->execute(array('id' => $postId));
 
 		return $affectedPost;
 	}
