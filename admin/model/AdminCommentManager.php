@@ -31,4 +31,12 @@ class CommentManager extends Manager
 
 			return $comment;
 	}
+
+	public function getRecentComments()
+	{
+		$db = $this->dbConnect();
+		$comments = $db->query('SELECT id, author, comment, DATE_FORMAT(comment_date, "%d/%m/%Y à %Hh%imin%ss") AS commentDate FROM comments WHERE DATE(comment_date) = DATE(NOW()) ORDER BY comment_date DESC');
+
+		return $comments;
+	}
 }

@@ -56,11 +56,14 @@ try {
     elseif ($_GET['action'] == 'deleteComment')
     {
       if (isset($_GET['commentId']) && $_GET['commentId'] > 0)
-      echo "string";
-      /*  deleteComment($_GET['commentId']); */
-
+        deleteComment($_GET['commentId']);
       else
         throw new Exception('Aucun identifiant de commentaire envoyé');
+    }
+
+    elseif ($_GET['action'] == 'recentComments')
+    {
+      recentComments();
     }
   }
   else
@@ -70,5 +73,5 @@ try {
 catch(Exception $e)
 {
 	$errorMessage = $e->getMessage();
-	require('view/errorView.php');
+	require('../view/errorView.php');
 }

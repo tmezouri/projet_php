@@ -88,5 +88,16 @@ function deleteComment($commentId)
 	if($affectedComment === false)
 		throw new Exception('Impossible de supprimer le commentaire !');
 	else
+		header('Location: ' . $_SERVER['HTTP_REFERER'] );
+}
+
+function recentComments()
+{
+	$commentManager = new \JeanForteroche\Blog\Model\Admin\CommentManager();
+	$comments = $commentManager->getRecentComments();
+
+	if($comments === false)
 		header('location: index.php?action=reportedComments');
+	else
+		require('view/recentCommentsView.php');
 }
