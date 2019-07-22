@@ -12,7 +12,7 @@
     <a href="index.php?action=postManagement" class="list-group-item list-group-item-action">Gestion des publications</a>
 		<a href="index.php?action=recentComments" class="list-group-item list-group-item-action">Commentaires récent</a>
 		<a href="index.php?action=reportedComments" class="list-group-item list-group-item-action">Commentaires signaler</a>
-    <a href="#" class="list-group-item list-group-item-action">Donner ou retirer les droits d'administration</a>
+    <a href="index.php?action=rights" class="list-group-item list-group-item-action">Donner ou retirer les droits d'administration</a>
   </div>
 </div>
 

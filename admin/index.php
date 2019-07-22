@@ -65,6 +65,19 @@ try {
     {
       recentComments();
     }
+
+    elseif ($_GET['action'] == 'rights')
+    {
+      rights();
+    }
+
+    elseif ($_GET['action'] == 'changeRights')
+    {
+      if (!empty($_POST['pseudo']))
+        changeRights($_POST['pseudo'], $_POST['rights']);
+      else
+        throw new Exception('Tous les champs ne sont pas remplis !');
+    }
   }
   else
     admin();

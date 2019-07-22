@@ -101,3 +101,29 @@ function recentComments()
 	else
 		require('view/recentCommentsView.php');
 }
+
+function rights()
+{
+		require('view/rightsView.php');
+}
+
+function changeRights($pseudo, $rights)
+{
+		$membersManager = new \JeanForteroche\Blog\Model\Admin\MembersManager();
+		$affectedMember = $membersManager->checkRights($pseudo);
+
+		if ($affectedMember === false)
+			throw new Exception('Utilisateur inconnu !');
+		elseif ($affectedMember['rights'] === $rights)
+			throw new Exception('Cet utilisateur a déjà ce type de droits');
+		else
+		{
+			$affectedMember = $membersManager->changeRights($pseudo, $rights);
+
+			if ($affectedMember === false)
+				throw new Exception('Impossible de changer les droits d\'administrateur');
+			else
+				header('location: index.php?action=rights&change=success');
+		}
+
+}
