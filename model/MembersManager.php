@@ -28,7 +28,7 @@ class MembersManager extends Manager
 	public function connection($pseudo)
 	{
 		$db = $this->dbConnect();
-		$req = $db->prepare('SELECT id, pass FROM members WHERE pseudo = :pseudo');
+		$req = $db->prepare('SELECT id, pseudo, pass, rights FROM members WHERE pseudo = :pseudo');
 		$req->execute(array('pseudo' => $pseudo));
 		$result = $req->fetch();
 

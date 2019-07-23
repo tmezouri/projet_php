@@ -32,11 +32,11 @@
         }
         ?>
         <?php
-          if (isset($_SESSION['pseudo']) AND $_SESSION['pseudo'] === "admin")
+          if (isset($_SESSION['rights']) AND $_SESSION['rights'] === "admin")
           {
         ?>
             <li class='nav-item rounded'>
-              <a class='nav-link' href='admin'>Administration</a>
+              <a class='nav-link' href='index.php?action=adminPage'>Administration</a>
             </li>
         <?php
           }

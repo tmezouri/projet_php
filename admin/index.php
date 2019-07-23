@@ -5,7 +5,14 @@ try {
   if (isset($_GET['action']))
   {
     if ($_GET['action'] == 'listPosts')
+    {
       listPosts();
+    }
+
+    elseif ($_GET['action'] == 'adminPage')
+    {
+      adminPage();
+    }
 
     elseif ($_GET['action'] == 'textEditor') {
       textEditor();
@@ -80,7 +87,7 @@ try {
     }
   }
   else
-    admin();
+    adminPage();
 }
 
 catch(Exception $e)

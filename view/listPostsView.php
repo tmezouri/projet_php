@@ -1,5 +1,10 @@
 <?php
 	session_start();
+	if (!isset($_SESSION['id']) AND !isset($_SESSION['pseudo']))
+	{
+		if (isset($_COOKIE['pseudo']) && isset($_COOKIE['pass']))
+			header('location: index.php?action=connection');
+	}
 ?>
 
 <?php $title = 'Jean Forteroche'; ?>

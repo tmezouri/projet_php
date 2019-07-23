@@ -9,7 +9,7 @@ function listPosts()
 	header('location: ../index.php?action=listPosts');
 }
 
-function admin()
+function adminPage()
 {
 	require('view/adminView.php');
 }

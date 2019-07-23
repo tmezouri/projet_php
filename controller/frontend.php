@@ -12,6 +12,11 @@ function listPosts()
   require('view/listPostsView.php');
 }
 
+function adminPage()
+{
+	header('location: admin');
+}
+
 function post()
 {
 	$postManager = new \JeanForteroche\Blog\Model\PostManager();
@@ -68,7 +73,8 @@ function connection()
 			if ($isPasswordCorrect) {
 					session_start();
 					$_SESSION['id'] = $result['id'];
-					$_SESSION['pseudo'] = $_COOKIE['pseudo'];
+					$_SESSION['pseudo'] = $result['pseudo'];
+					$_SESSION['rights'] = $result['rights'];
 					header('location: index.php?action=listPosts');
 			}
 			else {
@@ -89,11 +95,12 @@ function connection()
 			if ($isPasswordCorrect) {
 					session_start();
 					$_SESSION['id'] = $result['id'];
-					$_SESSION['pseudo'] = $_POST['pseudo'];
+					$_SESSION['pseudo'] = $result['pseudo'];
+					$_SESSION['rights'] = $result['rights'];
 					if ($_POST['auto'])
 					{
-						setcookie('pseudo', $pseudo, time() + 365*24*3600);
-						setcookie('pass', $result['pass'], time() + 365*24*3600);
+						setcookie('pseudo', $result['pseudo'], time() + 365*24*3600);
+						setcookie('pass', $_POST['pass'], time() + 365*24*3600);
 					}
 					header('location: index.php?action=listPosts');
 			}
@@ -111,8 +118,8 @@ function logOut()
 	$_SESSION = array();
 	session_destroy();
 
-	setcookie('login', '');
-	setcookie('pass_hache', '');
+	setcookie('pseudo', '');
+	setcookie('pass', '');
 
 	header('location: index.php?action=listPosts');
 }
