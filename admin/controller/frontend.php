@@ -110,20 +110,34 @@ function rights()
 function changeRights($pseudo, $rights)
 {
 		$membersManager = new \JeanForteroche\Blog\Model\Admin\MembersManager();
-		$affectedMember = $membersManager->checkRights($pseudo);
+		$member = $membersManager->checkRights($pseudo);
 
-		if ($affectedMember === false)
+		if ($member === false)
 			throw new Exception('Utilisateur inconnu !');
-		elseif ($affectedMember['rights'] === $rights)
+		elseif ($member['pseudo'] === $pseudo)
+			throw new Exception('Vous ne pouvez pas changer vos propre droits');
+		elseif ($member['rights'] === $rights)
 			throw new Exception('Cet utilisateur a déjà ce type de droits');
 		else
 		{
-			$affectedMember = $membersManager->changeRights($pseudo, $rights);
+			$member = $membersManager->changeRights($pseudo, $rights);
 
-			if ($affectedMember === false)
+			if ($member === false)
 				throw new Exception('Impossible de changer les droits d\'administrateur');
 			else
 				header('location: index.php?action=rights&change=success');
 		}
+}
 
+function logOut()
+{
+	session_start();
+
+	$_SESSION = array();
+	session_destroy();
+
+	setcookie('pseudo', '');
+	setcookie('pass', '');
+
+	header('location: index.php?action=listPosts');
 }

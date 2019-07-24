@@ -85,6 +85,10 @@ try {
       else
         throw new Exception('Tous les champs ne sont pas remplis !');
     }
+
+    elseif ($_GET['action'] == 'logOut') {
+      logOut();
+    }
   }
   else
     adminPage();
