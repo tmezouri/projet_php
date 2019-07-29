@@ -12,6 +12,14 @@ function listPosts()
   require('view/listPostsView.php');
 }
 
+function home()
+{
+	$postManager = new \JeanForteroche\Blog\Model\PostManager();
+  $posts = $postManager->getLastPost();
+
+  require('view/homeView.php');
+}
+
 function adminPage()
 {
 	header('location: admin');

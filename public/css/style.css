@@ -2,7 +2,40 @@
   height: 70vh;
 }
 
-.reportComment
-{
-  font-size: 1em;
+.container {
+  margin-top: 40px;
+}
+
+.margin, #lastPostPreview {
+  margin-top: -30px;
+}
+
+#postLink {
+  text-decoration: none;
+}
+
+#commentTitle {
+  font-size: 1.4em;
+}
+
+#comments {
+  padding: 20px;
+}
+
+#commentForm {
+  margin-bottom: 30px;
+}
+
+#comment {
+  padding: 20px;
+  background-color: white;
+}
+
+#commentDate {
+  margin: -15px 0 0 0;
+  font-size: 0.8em;
+}
+
+#reportComment {
+  font-size: 0.8em;
 }

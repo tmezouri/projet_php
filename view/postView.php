@@ -5,52 +5,55 @@
 <?php $title = htmlspecialchars($post['title']); ?>
 
 <?php ob_start(); ?>
+<div id="container" class="container">
 
-<p><a href="index.php?action=listPosts">Retour à la liste des billets</a></p>
+	<p><a class="btn btn-secondary" href="index.php?action=listPosts"><i class="fas fa-arrow-left"></i> Retour aux publications</a></p>
 
-<h3>
-	<?= $post['title'] ?>
-	<em>le <?= $post['publicationDate'] ?></em>
-</h3>
-<p>
-	<?= $post['content'] ?>
-</p>
+	<h2><?= $post['title'] ?></h2>
+	<em>Poster le <?= $post['publicationDate'] ?></em>
+	<p><?= $post['content'] ?></p>
 
-<h2>Commentaires</h2>
-
-<?php
-	if (isset($_SESSION['id']) AND isset($_SESSION['pseudo']))
-	{
-?>
-		<form action="index.php?action=addComment&amp;postId=<?= $post['id'] ?>" method="post">
-			<input type="text" name="author" value="<?= $_SESSION['pseudo'];?>" hidden>
-			<label> commentaire : <input type="text" name="comment"></label>
-			<input type="submit" value="poster">
-		</form>
-<?php
-	}
-?>
-
-<?php
-
-while ($comment = $comments->fetch())
-{
-?>
-    <p><?= htmlspecialchars($comment['author']) ?> le <?= $comment['commentDate'] ?></p>
-    <p><?= nl2br(htmlspecialchars($comment['comment'])) ?></p>
+	<div id="comments" class="jumbotron">
+		<h4>Commentaires</h4>
 		<?php
 			if (isset($_SESSION['id']) AND isset($_SESSION['pseudo']))
 			{
 		?>
-		<a class="btn btn-dark reportComment" href="index.php?action=reportComment&amp;commentId=<?= $comment['id'] ?>&amp;postId=<?= $post['id'] ?>"><i class="fas fa-exclamation-circle"></i></i></a>
+			<form id="commentForm" action="index.php?action=addComment&amp;postId=<?= $post['id'] ?>" method="post">
+				<input type="text" name="author" value="<?= $_SESSION['pseudo'];?>" hidden>
+				<div class="form-group">
+			    <textarea name="comment" class="form-control" rows="5"></textarea>
+			  </div>
+			  <button type="submit" class="btn btn-dark">Poster</button>
+			</form>
 		<?php
 			}
 		?>
 
-<?php
-}
+		<?php
+		while ($comment = $comments->fetch())
+		{
+		?>
+		<div id="comment" class="jumbotron">
+		    <p><?= htmlspecialchars($comment['author']) ?></p>
+				<p id="commentDate"><?= $comment['commentDate'] ?></p>
+				<hr>
+		    <p><?= nl2br(htmlspecialchars($comment['comment'])) ?></p>
+				<?php
+					if (isset($_SESSION['id']) AND isset($_SESSION['pseudo']))
+					{
+				?>
+				<a id="reportComment" class="btn btn-dark" href="index.php?action=reportComment&amp;commentId=<?= $comment['id'] ?>&amp;postId=<?= $post['id'] ?>"><i class="fas fa-exclamation"></i> Signaler</a>
+				<?php
+					}
+				?>
+		</div>
+		<?php
+		}
+		?>
 
-?>
+	</div>
+</div>
 
 <?php
 	$content = ob_get_clean();

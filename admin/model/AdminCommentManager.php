@@ -9,7 +9,7 @@ class CommentManager extends Manager
 	public function getComments($postId)
 	{
 		$db = $this->dbConnect();
-		$comments = $db->prepare('SELECT id, author, comment, DATE_FORMAT(comment_date, "%d/%m/%Y à %Hh%imin%ss") AS commentDate FROM comments WHERE post_id = ? ORDER BY comment_date DESC');
+		$comments = $db->prepare('SELECT id, author, comment, DATE_FORMAT(comment_date, "%d/%m/%Y à %H:%i:%s") AS commentDate FROM comments WHERE post_id = ? ORDER BY comment_date DESC');
 		$comments->execute(array($postId));
 
 		return $comments;
@@ -18,7 +18,7 @@ class CommentManager extends Manager
 	public function reportedComments()
 	{
 			$db = $this->dbConnect();
-			$comments = $db->query('SELECT id, author, comment, DATE_FORMAT(comment_date, "%d/%m/%Y à %Hh%imin%ss") AS commentDate FROM comments WHERE report > 0 ORDER BY comment_date DESC');
+			$comments = $db->query('SELECT id, author, comment, DATE_FORMAT(comment_date, "%d/%m/%Y à %H:%i:%s") AS commentDate FROM comments WHERE report > 0 ORDER BY comment_date DESC');
 
 			return $comments;
 	}
@@ -35,7 +35,7 @@ class CommentManager extends Manager
 	public function getRecentComments()
 	{
 		$db = $this->dbConnect();
-		$comments = $db->query('SELECT id, author, comment, DATE_FORMAT(comment_date, "%d/%m/%Y à %Hh%imin%ss") AS commentDate FROM comments WHERE DATE(comment_date) = DATE(NOW()) ORDER BY comment_date DESC');
+		$comments = $db->query('SELECT id, author, comment, DATE_FORMAT(comment_date, "%d/%m/%Y à %H:%i:%s") AS commentDate FROM comments WHERE DATE(comment_date) = DATE(NOW()) ORDER BY comment_date DESC');
 
 		return $comments;
 	}

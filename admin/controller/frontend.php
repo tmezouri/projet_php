@@ -65,7 +65,7 @@ function deletePost($postId)
 	if($affectedPost === false)
 		throw new Exception('Impossible de supprimer la publication !');
 	else
-		header('location: ../index.php?action=listPosts');
+		header('location: index.php?action=postManagement');
 }
 
 function reportedComments()
