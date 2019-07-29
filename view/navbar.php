@@ -6,27 +6,27 @@
   <div class="collapse navbar-collapse" id="navbarText">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item rounded">
-        <a class="nav-link" href="index.php">Accueil</a>
+        <a class="nav-link btn btn-dark" href="index.php">Accueil</a>
       </li>
       <li class="nav-item rounded">
-        <a class="nav-link" href="index.php?action=listPosts">Publications</a>
+        <a class="nav-link btn btn-dark" href="index.php?action=listPosts">Publications</a>
       </li>
       <li class="nav-item rounded">
-        <a class="nav-link" href="#contact">Contact</a>
+        <a class="nav-link btn btn-dark" href="#contact">Contact</a>
       </li>
       <?php
         if (isset($_SESSION['id']) AND isset($_SESSION['pseudo']))
         {
           echo "
           <li class='nav-item rounded'>
-            <a class='nav-link' href='index.php?action=logOut'>Deconnexion</a>
+            <a class='nav-link btn btn-dark' href='index.php?action=logOut'>Deconnexion</a>
           </li>
           ";
         }
         else {
           echo "
           <li class='nav-item rounded'>
-            <a type='button' class='nav-link' data-toggle='modal' data-target='#myModal'>Connexion</a>
+            <button type='button' class='nav-link btn btn-dark' data-toggle='modal' data-target='#myModal'>Connexion</button>
           </li>
           ";
         }
@@ -36,7 +36,7 @@
           {
         ?>
             <li class='nav-item rounded'>
-              <a class='nav-link' href='index.php?action=adminPage'>Administration</a>
+              <a class='nav-link btn btn-dark' href='index.php?action=adminPage'>Administration</a>
             </li>
         <?php
           }

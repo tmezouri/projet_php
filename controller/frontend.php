@@ -83,7 +83,7 @@ function connection()
 					$_SESSION['id'] = $result['id'];
 					$_SESSION['pseudo'] = $result['pseudo'];
 					$_SESSION['rights'] = $result['rights'];
-					header('location: index.php?action=listPosts');
+					header('Location: ' . $_SERVER['HTTP_REFERER'] );
 			}
 			else {
 				throw new Exception('Mauvais identifiant ou mot de passe !');
@@ -110,7 +110,7 @@ function connection()
 						setcookie('pseudo', $result['pseudo'], time() + 365*24*3600);
 						setcookie('pass', $_POST['pass'], time() + 365*24*3600);
 					}
-					header('location: index.php?action=listPosts');
+					header('Location: ' . $_SERVER['HTTP_REFERER'] );
 			}
 			else {
 				throw new Exception('Mauvais identifiant ou mot de passe !');
@@ -129,7 +129,7 @@ function logOut()
 	setcookie('pseudo', '');
 	setcookie('pass', '');
 
-	header('location: index.php?action=listPosts');
+	header('Location: ' . $_SERVER['HTTP_REFERER'] );
 }
 
 function reportComment()
