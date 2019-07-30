@@ -39,4 +39,22 @@ class CommentManager extends Manager
 
 		return $comments;
 	}
+
+	public function getRecentCommentsNumber()
+	{
+		$db = $this->dbConnect();
+		$req = $db->query('SELECT COUNT(*) as nbComments FROM comments WHERE DATE(comment_date) = DATE(NOW())');
+		$comments = $req->fetch();
+
+		return $comments;
+	}
+
+	public function getReportedCommentsNumber()
+	{
+		$db = $this->dbConnect();
+		$req = $db->query('SELECT COUNT(*) as nbComments FROM comments WHERE report > 0');
+		$comments = $req->fetch();
+
+		return $comments;
+	}
 }

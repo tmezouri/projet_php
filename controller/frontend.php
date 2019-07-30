@@ -4,20 +4,20 @@ require_once('model/PostManager.php');
 require_once('model/CommentManager.php');
 require_once('model/MembersManager.php');
 
-function listPosts()
-{
-	$postManager = new \JeanForteroche\Blog\Model\PostManager();
-  $posts = $postManager->getPosts();
-
-  require('view/listPostsView.php');
-}
-
 function home()
 {
 	$postManager = new \JeanForteroche\Blog\Model\PostManager();
   $posts = $postManager->getLastPost();
 
   require('view/homeView.php');
+}
+
+function listPosts()
+{
+	$postManager = new \JeanForteroche\Blog\Model\PostManager();
+  $posts = $postManager->getPosts();
+
+  require('view/listPostsView.php');
 }
 
 function adminPage()

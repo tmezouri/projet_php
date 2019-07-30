@@ -1,7 +1,3 @@
-<?php
-	session_start();
-?>
-
 <?php $title = htmlspecialchars($post['title']); ?>
 
 <?php ob_start(); ?>
@@ -34,7 +30,7 @@
 		while ($comment = $comments->fetch())
 		{
 		?>
-		<div id="comment" class="jumbotron">
+		<div id="comment" class="jumbotron comment">
 		    <p><?= htmlspecialchars($comment['author']) ?></p>
 				<p id="commentDate"><?= $comment['commentDate'] ?></p>
 				<hr>

@@ -4,6 +4,11 @@ require_once('model/AdminPostManager.php');
 require_once('model/AdminCommentManager.php');
 require_once('model/AdminMembersManager.php');
 
+function home()
+{
+	header('location: ../index.php');
+}
+
 function listPosts()
 {
 	header('location: ../index.php?action=listPosts');
@@ -71,8 +76,8 @@ function deletePost($postId)
 function reportedComments()
 {
 	$commentManager = new \JeanForteroche\Blog\Model\Admin\CommentManager();
-
 	$reportedComments = $commentManager->reportedComments();
+	$number = $commentManager->getReportedCommentsNumber();
 
 	if($reportedComments === false)
 		throw new Exception('Aucun commentaires n\'a été signalé');
@@ -95,6 +100,7 @@ function recentComments()
 {
 	$commentManager = new \JeanForteroche\Blog\Model\Admin\CommentManager();
 	$comments = $commentManager->getRecentComments();
+	$number = $commentManager->getRecentCommentsNumber();
 
 	if($comments === false)
 		header('location: index.php?action=reportedComments');
@@ -107,14 +113,14 @@ function rights()
 		require('view/rightsView.php');
 }
 
-function changeRights($pseudo, $rights)
+function changeRights($pseudo, $rights, $sessionPseudo)
 {
 		$membersManager = new \JeanForteroche\Blog\Model\Admin\MembersManager();
 		$member = $membersManager->checkRights($pseudo);
 
 		if ($member === false)
 			throw new Exception('Utilisateur inconnu !');
-		elseif ($member['pseudo'] === $pseudo)
+		elseif ($sessionPseudo == $pseudo)
 			throw new Exception('Vous ne pouvez pas changer vos propre droits');
 		elseif ($member['rights'] === $rights)
 			throw new Exception('Cet utilisateur a déjà ce type de droits');

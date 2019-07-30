@@ -1,19 +1,23 @@
-<?php
-	session_start();
-?>
-
 <?php $title = 'Gestion des publications'; ?>
 
 <?php ob_start(); ?>
+
+<div class="container">
+
+
 
 <?php
 while ($data = $posts->fetch())
 {
 ?>
-	<h3><?= htmlspecialchars($data['title'])?> le <?= $data['publicationDate'] ?></h3>
-	<p><?= $data['content'] ?></p>
+<div class="jumbotron">
+
+
+	<h3><?= htmlspecialchars($data['title'])?></h3>
+	<em>Poster le <?= $data['publicationDate'] ?></em>
+	<p><?= substr($data['content'],0, strpos($data['content'],'</p>',0)) ?></div></p>
   <a class="btn btn-dark" href="index.php?action=editPost&amp;postId=<?= $data['id'] ?>"><i class="fas fa-pencil-alt"> modifier</i></a>
-  <a class='btn btn-dark' data-toggle='modal' data-target='#Modal'><i class="fas fa-trash-alt"> supprimer</i></a>
+  <a class='btn btn-dark' data-toggle='modal' data-target='#Modal'><i class="fas fa-trash-alt delete"> supprimer</i></a>
 
   <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -34,13 +38,13 @@ while ($data = $posts->fetch())
       </div>
     </div>
   </div>
-
+</div>
 <?php
 }
 $posts->closeCursor();
 ?>
 
-
+</div>
 
 
 <?php

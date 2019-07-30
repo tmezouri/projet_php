@@ -6,7 +6,7 @@
   <div class="collapse navbar-collapse" id="navbarText">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item rounded">
-        <a class="nav-link btn btn-dark" href="index.php">Accueil</a>
+        <a class="nav-link btn btn-dark" href="index.php?action=home">Accueil</a>
       </li>
       <li class="nav-item rounded">
         <a class="nav-link btn btn-dark" href="index.php?action=listPosts">Publications</a>

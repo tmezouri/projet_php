@@ -1,9 +1,20 @@
 <?php
+
+session_start();
+if (!isset($_SESSION['id']) AND !isset($_SESSION['pseudo']))
+{
+	if (isset($_COOKIE['pseudo']) && isset($_COOKIE['pass']))
+		header('location: index.php?action=connection');
+}
+
 require('controller/frontend.php');
 
 try {
   if (isset($_GET['action']))
   {
+		if ($_GET['action'] == 'home')
+      home();
+
     if ($_GET['action'] == 'listPosts')
       listPosts();
 
@@ -18,9 +29,7 @@ try {
     elseif ($_GET['action'] == 'post')
 		{
 			if (isset($_GET['postId']) && $_GET['postId'] > 0)
-			{
 				post();
-			}
 			else
 				throw new Exception('Aucun identifiant de billet envoyé');
 		}
@@ -43,9 +52,7 @@ try {
       if ($_POST['pass'] == $_POST['passConfirm'])
       {
         if (preg_match("#^[^\W][a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\@[a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\.[a-zA-Z]{2,4}$#", $_POST['email']))
-        {
           registration();
-        }
         else
           throw new Exception('L\'adresse mail saisie est invalide');
       }
@@ -54,13 +61,10 @@ try {
     }
 
     elseif($_GET['action'] == 'connection')
-    {
       connection();
-    }
 
-    elseif ($_GET['action'] == 'logOut') {
+    elseif ($_GET['action'] == 'logOut')
       logOut();
-    }
 
     elseif ($_GET['action'] == 'reportComment')
     {
@@ -71,9 +75,7 @@ try {
     }
 
     elseif ($_GET['action'] == 'adminPage')
-    {
       adminPage();
-    }
   }
   else
     home();

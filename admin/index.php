@@ -1,22 +1,23 @@
 <?php
+
+session_start();
+
 require('controller/frontend.php');
 
 try {
   if (isset($_GET['action']))
   {
+    if ($_GET['action'] == 'home')
+      home();
+
     if ($_GET['action'] == 'listPosts')
-    {
       listPosts();
-    }
 
     elseif ($_GET['action'] == 'adminPage')
-    {
       adminPage();
-    }
 
-    elseif ($_GET['action'] == 'textEditor') {
+    elseif ($_GET['action'] == 'textEditor')
       textEditor();
-    }
 
     elseif ($_GET['action'] == 'addPost')
     {
@@ -27,9 +28,7 @@ try {
     }
 
     elseif ($_GET['action'] == 'postManagement')
-    {
       postManagement();
-    }
 
     elseif ($_GET['action'] == 'editPost')
     {
@@ -56,9 +55,7 @@ try {
     }
 
     elseif ($_GET['action'] == 'reportedComments')
-    {
       reportedComments();
-    }
 
     elseif ($_GET['action'] == 'deleteComment')
     {
@@ -69,26 +66,21 @@ try {
     }
 
     elseif ($_GET['action'] == 'recentComments')
-    {
       recentComments();
-    }
 
     elseif ($_GET['action'] == 'rights')
-    {
       rights();
-    }
 
     elseif ($_GET['action'] == 'changeRights')
     {
       if (!empty($_POST['pseudo']))
-        changeRights($_POST['pseudo'], $_POST['rights']);
+        changeRights($_POST['pseudo'], $_POST['rights'], $_SESSION['pseudo']);
       else
         throw new Exception('Tous les champs ne sont pas remplis !');
     }
 
-    elseif ($_GET['action'] == 'logOut') {
+    elseif ($_GET['action'] == 'logOut')
       logOut();
-    }
   }
   else
     adminPage();

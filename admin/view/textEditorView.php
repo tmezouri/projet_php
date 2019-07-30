@@ -1,7 +1,3 @@
-<?php
-	session_start();
-?>
-
 <?php $title = 'Editeur de texte'; ?>
 
 <?php ob_start(); ?>
@@ -46,7 +42,7 @@
 			}
 			?>
 		</textarea>
-		<input class="btn btn-dark" type="submit" value="poster">
+		<input id="submitTextEditor" class="btn btn-dark" type="submit" value="poster">
 	</form>
 </div>
 <?php
