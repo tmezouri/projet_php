@@ -3,7 +3,7 @@
 }
 
 .container {
-  margin-top: 40px;
+  margin-top: 100px;
 }
 
 #postLink {
@@ -32,7 +32,7 @@
   font-size: 0.8em;
 }
 
-#reportComment {
+#reportComment, #delete, #modify, #deleteReport, #deleteRecentComment {
   font-size: 0.8em;
 }
 
@@ -41,8 +41,12 @@
   font-size: 1.2em;
 }
 
-.delete {
+#delete, #deleteReport, #deleteRecentComment {
   color: white;
+}
+
+#delete:hover, #deleteReport:hover, #deleteRecentComment:hover {
+  cursor: pointer;
 }
 
 .adminMenu {
@@ -51,4 +55,8 @@
 
 #recentCommentTitle, #reportedCommentTitle {
   margin-bottom: 30px;
+}
+
+#connectionComment, #addPostButton {
+  margin-bottom: 20px;
 }

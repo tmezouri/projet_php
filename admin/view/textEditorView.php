@@ -42,7 +42,7 @@
 			}
 			?>
 		</textarea>
-		<input id="submitTextEditor" class="btn btn-dark" type="submit" value="poster">
+		<input id="submitTextEditor" class="btn btn-dark" type="submit" value="Poster">
 	</form>
 </div>
 <?php

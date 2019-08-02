@@ -1,3 +1,4 @@
+AddDefaultCharset utf-8
 AuthName "Page d'administration protégée"
 AuthType Basic
 AuthUserFile "C:\wamp64\www\projet_php\admin\.htpasswd"

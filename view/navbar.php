@@ -1,13 +1,10 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="#page-top">Jean Forteroche</a>
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="index.php?action=home">Jean Forteroche</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarText">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item rounded">
-        <a class="nav-link btn btn-dark" href="index.php?action=home">Accueil</a>
-      </li>
       <li class="nav-item rounded">
         <a class="nav-link btn btn-dark" href="index.php?action=listPosts">Publications</a>
       </li>
@@ -26,7 +23,7 @@
         else {
           echo "
           <li class='nav-item rounded'>
-            <button type='button' class='nav-link btn btn-dark' data-toggle='modal' data-target='#myModal'>Connexion</button>
+            <a type='button' class='nav-link btn btn-dark' data-toggle='modal' href='' data-target='#myModal'>Connexion</a>
           </li>
           ";
         }

@@ -14,7 +14,7 @@
 				<p id="commentDate"><?= $data['commentDate'] ?></p>
 				<hr>
 				<p><?= nl2br(htmlspecialchars($data['comment'])) ?></p>
-				<a class='btn btn-dark' data-toggle='modal' data-target='#Modal'><i class="fas fa-trash-alt delete"> supprimer</i></a>
+				<a id="deleteRecentComment" class='btn btn-dark' data-toggle='modal' data-target='#Modal'><i class="fas fa-trash-alt"></i> Supprimer</a>
 			</div>
 
 			<div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

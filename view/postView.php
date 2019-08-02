@@ -14,15 +14,20 @@
 		<?php
 			if (isset($_SESSION['id']) AND isset($_SESSION['pseudo']))
 			{
-		?>
-			<form id="commentForm" action="index.php?action=addComment&amp;postId=<?= $post['id'] ?>" method="post">
-				<input type="text" name="author" value="<?= $_SESSION['pseudo'];?>" hidden>
-				<div class="form-group">
-			    <textarea name="comment" class="form-control" rows="5"></textarea>
-			  </div>
-			  <button type="submit" class="btn btn-dark">Poster</button>
-			</form>
-		<?php
+				?>
+				<form id="commentForm" action="index.php?action=addComment&amp;postId=<?= $post['id'] ?>" method="post">
+					<input type="text" name="author" value="<?= $_SESSION['pseudo'];?>" hidden>
+					<div class="form-group">
+				    <textarea name="comment" class="form-control" rows="5"></textarea>
+				  </div>
+				  <button type="submit" class="btn btn-dark">Poster</button>
+				</form>
+				<?php
+			}
+			else {
+				?>
+				<a type='button' id="connectionComment" class='nav-link btn btn-dark col-md-4 col-sm-12' data-toggle='modal' href='' data-target='#myModal'>Connectez vous pour poster un commentaire</a>
+				<?php
 			}
 		?>
 

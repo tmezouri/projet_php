@@ -16,8 +16,8 @@ while ($data = $posts->fetch())
 	<h3><?= htmlspecialchars($data['title'])?></h3>
 	<em>Poster le <?= $data['publicationDate'] ?></em>
 	<p><?= substr($data['content'],0, strpos($data['content'],'</p>',0)) ?></div></p>
-  <a class="btn btn-dark" href="index.php?action=editPost&amp;postId=<?= $data['id'] ?>"><i class="fas fa-pencil-alt"> modifier</i></a>
-  <a class='btn btn-dark' data-toggle='modal' data-target='#Modal'><i class="fas fa-trash-alt delete"> supprimer</i></a>
+  <a id="modify" class="btn btn-dark" href="index.php?action=editPost&amp;postId=<?= $data['id'] ?>"><i class="fas fa-pencil-alt"></i> Modifier</a>
+  <a id="delete" class="btn btn-dark" data-toggle='modal' data-target='#Modal'><i class="fas fa-trash-alt"></i> Supprimer</a>
 
   <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
