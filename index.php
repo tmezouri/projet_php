@@ -76,6 +76,11 @@ try {
 
     elseif ($_GET['action'] == 'adminPage')
       adminPage();
+
+		elseif ($_GET['action'] == 'search')
+		{
+			search();
+		}
   }
   else
     home();

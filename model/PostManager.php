@@ -32,5 +32,12 @@ class PostManager extends Manager
 		return $req;
 	}
 
+	public function searchPost($search)
+	{
+		$db = $this->dbConnect();
+		$req = $db->prepare("SELECT id, title, content, DATE_FORMAT(creation_date, '%d/%m/%Y à %H:%i:%s') AS publicationDate FROM posts WHERE title LIKE ? OR content LIKE ?");
+		$req->execute(array("%" . $search . "%", "%" . $search . "%"));
 
+		return $req;
+	}
 }

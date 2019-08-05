@@ -145,3 +145,18 @@ function reportComment()
 		header("location: index.php?action=post&postId=$postId");
 	}
 }
+
+function search()
+{
+	$postManager = new \JeanForteroche\Blog\Model\PostManager();
+
+	$search = htmlspecialchars($_POST['search']);
+
+	$searchResults = $postManager->searchPost($search);
+
+	if (!$searchResults)
+		throw new Exception('Aucun résultats trouvé');
+	else
+		require('view/searchResultsView.php');
+
+}

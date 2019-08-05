@@ -3,7 +3,7 @@
 <?php ob_start(); ?>
 <div class="container">
 
-	<h2>Dernières publications :</h2>
+	<h2>Résultats de la recherche:</h2>
 
 	<?php
 		if (isset($_SESSION['rights']) AND $_SESSION['rights'] === "admin")
@@ -15,7 +15,7 @@
 	?>
 
 	<?php
-	while ($data = $posts->fetch())
+	while ($data = $searchResults->fetch())
 	{
 	?>
 
@@ -28,9 +28,12 @@
 
 	<?php
 	}
-	$posts->closeCursor();
+	$searchResults->closeCursor();
 	?>
 </div>
+
+
+
 
 <?php
 	$content = ob_get_clean();

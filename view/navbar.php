@@ -39,6 +39,16 @@
           }
         ?>
     </ul>
+
+    <form class="justify-content-center form-inline" action="index.php?action=search" method="post">
+      <div class="input-group">
+        <input type="search" class="form-control" name="search" required>
+        <div class="input-group-append">
+          <button class="btn btn-secondary" type="submit" ><i class="fas fa-search"></i></button>
+        </div>
+      </div>
+    </form>
+
   </div>
 </nav>
 
