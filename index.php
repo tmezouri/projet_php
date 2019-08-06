@@ -51,13 +51,10 @@ try {
     {
       if ($_POST['pass'] == $_POST['passConfirm'])
       {
-        if (preg_match("#^[^\W][a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\@[a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\.[a-zA-Z]{2,4}$#", $_POST['email']))
           registration();
-        else
-          throw new Exception('L\'adresse mail saisie est invalide');
       }
       else
-        throw new Exception('Les mots de passe saisie ne sont pas identiques');
+				header('Location: index.php?action=home&error=pass');
     }
 
     elseif($_GET['action'] == 'connection')

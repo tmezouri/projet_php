@@ -52,6 +52,18 @@
   </div>
 </nav>
 
+<?php
+if (isset($_GET['error'])) {
+  ?>
+  <script type="text/javascript">
+      $(window).on('load',function(){
+          $('#myModal').modal('show');
+      });
+  </script>
+  <?php
+}
+
+?>
 <div class="modal" id="myModal">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -81,6 +93,9 @@
         </div>
 
         <button type="submit" class="btn btn-dark">Connexion</button>
+        <?php if (isset($_GET['error']) && $_GET['error'] == 'login'): ?>
+          <div class="alert alert-danger loginAlert" role="alert">Mauvais identifiant ou mot de passe</div>
+        <?php endif; ?>
         <hr>
       </form>
     </div>
@@ -113,7 +128,11 @@
           </div>
 
           <button type="submit" class="btn btn-dark">Inscription</button>
-
+          <?php if (isset($_GET['error']) && $_GET['error'] == 'pass'): ?>
+            <div class="alert alert-danger registerAlert" role="alert">Les mots de passe saisie ne sont pas identiques</div>
+          <?php elseif (isset($_GET['error']) && $_GET['error'] == 'pseudo'): ?>
+            <div class="alert alert-danger registerAlert" role="alert">Ce nom d'utilisateur est déjà pris</div>
+          <?php endif; ?>
         </form>
       </div>
     </div>

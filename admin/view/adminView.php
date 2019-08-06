@@ -7,7 +7,7 @@
 
     <div class="card">
       <div class="card-header">
-        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne">
+        <button id="adminMenuButton1" class="btn btn-link" data-toggle="collapse" data-target="#collapseOne">
           <h3>Gestion des publications</h3>
         </button>
       </div>
@@ -26,33 +26,21 @@
           {
           ?>
           <div class="jumbotron">
-
-
           	<h3><?= htmlspecialchars($dataPosts['title'])?></h3>
           	<em>Poster le <?= $dataPosts['publicationDate'] ?></em>
-          	<p><?= substr($dataPosts['content'],0, strpos($dataPosts['content'],'</p>',0)) ?></div></p>
+            <p></p>
+            <?php
+            if(substr($dataPosts['content'], 0, 4) == '<div')
+            {
+              echo substr($dataPosts['content'], 0, strpos($dataPosts['content'],'</p>'));
+              echo substr($dataPosts['content'], strpos($dataPosts['content'],'</p>'), 4);
+              echo substr($dataPosts['content'], -6, 6);
+            }
+            else {
+              echo $dataPosts['content'];
+            }
+            ?>
             <a id="modify" class="btn btn-dark" href="index.php?action=editPost&amp;postId=<?= $dataPosts['id'] ?>"><i class="fas fa-pencil-alt"></i> Modifier</a>
-            <a id="delete" class="btn btn-dark" data-toggle='modal' data-target='#Modal1'><i class="fas fa-trash-alt"></i> Supprimer</a>
-
-            <div class="modal fade" id="Modal1" tabindex="-1" role="dialog" aria-hidden="true">
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title">Suppression</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <div class="modal-body">
-                    êtes vous sur de vouloir supprimer cette publication ?
-                  </div>
-                  <div class="modal-footer">
-                    <a class="btn btn-danger" href="index.php?action=deletePost&amp;postId=<?= $dataPosts['id'] ?>">Oui</a>
-                    <button type="button" class="btn btn-dark" data-dismiss="modal">Non</button>
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
           <?php
           }
@@ -64,7 +52,7 @@
 
     <div class="card">
       <div class="card-header">
-        <button class="btn btn-link" <?php if ($recentCommentsNumber['nbComments'] > 0) { echo "data-toggle='collapse'"; }?> data-target="#collapseTwo">
+        <button id="adminMenuButton2" class="btn btn-link" <?php if ($recentCommentsNumber['nbComments'] > 0) { echo "data-toggle='collapse'"; }?> data-target="#collapseTwo">
           <h3>Commentaires récent <span class="badge badge-primary"><?= $recentCommentsNumber['nbComments']?></span></h3>
         </button>
       </div>
@@ -72,6 +60,7 @@
       <div id="collapseTwo" class="collapse">
         <div class="card-body">
           <?php
+          $n = 1;
           while ($dataRecentComments = $recentComments->fetch())
           {
             ?>
@@ -80,10 +69,10 @@
               <p id="commentDate"><?= $dataRecentComments['commentDate'] ?></p>
               <hr>
               <p><?= nl2br(htmlspecialchars($dataRecentComments['comment'])) ?></p>
-              <a id="deleteRecentComment" class='btn btn-dark' data-toggle='modal' data-target='#Modal2'><i class="fas fa-trash-alt"></i> Supprimer</a>
+              <a id="deleteRecentComment" class='btn btn-dark' data-toggle='modal' <?php echo "data-target='#ModalRecent" . $n . "'" ?>><i class="fas fa-trash-alt"></i> Supprimer</a>
             </div>
 
-            <div class="modal fade" id="Modal2" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal fade" <?php echo "id='ModalRecent" . $n . "'" ?> tabindex="-1" role="dialog" aria-hidden="true">
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
@@ -102,7 +91,8 @@
                 </div>
               </div>
             </div>
-            <?php
+          <?php
+          $n++;
           }
           $recentComments->closeCursor();
           ?>
@@ -110,9 +100,11 @@
       </div>
     </div>
 
+
+
     <div class="card">
       <div class="card-header">
-        <button class="btn btn-link" <?php if ($reportedCommentsNumber['nbComments'] > 0) { echo "data-toggle='collapse'"; }?> data-target="#collapseThree">
+        <button id="adminMenuButton3" class="btn btn-link" <?php if ($reportedCommentsNumber['nbComments'] > 0) { echo "data-toggle='collapse'"; }?> data-target="#collapseThree">
           <h3>Commentaires signalé  <span class="badge badge-primary"><?= $reportedCommentsNumber['nbComments']?></span></h3>
         </button>
       </div>
@@ -120,18 +112,19 @@
       <div id="collapseThree" class="collapse">
         <div class="card-body">
       		<?php
+          $n = 0;
       		while ($dataReportedComments = $reportedComments->fetch())
       		{
-      			?>
+      		?>
       			<div id="reportedComment" class="jumbotron">
       				<p><?= htmlspecialchars($dataReportedComments['author'])?></p>
       				<p id="commentDate"><?= $dataReportedComments['commentDate'] ?></p>
       				<hr>
       				<p><?= nl2br(htmlspecialchars($dataReportedComments['comment'])) ?></p>
-      				<a id="deleteReport" class='btn btn-dark' data-toggle='modal' data-target='#Modal3'><i class="fas fa-trash-alt"></i> Supprimer</a>
+      				<a id="deleteReport" class='btn btn-dark' data-toggle='modal' <?php echo "data-target='#ModalReport" . $n . "'" ?>><i class="fas fa-trash-alt"></i> Supprimer</a>
       			</div>
 
-      			<div class="modal fade" id="Modal3" tabindex="-1" role="dialog" aria-hidden="true">
+      			<div class="modal fade" <?php echo "id='ModalReport" . $n . "'" ?> tabindex="-1" role="dialog" aria-hidden="true">
       				<div class="modal-dialog" role="document">
       					<div class="modal-content">
       						<div class="modal-header">
@@ -144,13 +137,15 @@
       							êtes vous sur de vouloir supprimer ce commentaire ?
       						</div>
       						<div class="modal-footer">
+                    <?php echo $dataReportedComments['id'] ?>
       							<a class="btn btn-danger" href="index.php?action=deleteComment&amp;commentId=<?= $dataReportedComments['id'] ?>">Oui</a>
       							<button type="button" class="btn btn-dark" data-dismiss="modal">Non</button>
       						</div>
       					</div>
       				</div>
       			</div>
-      			<?php
+    			<?php
+          $n++;
       		}
       		$reportedComments->closeCursor();
       		?>
@@ -160,7 +155,7 @@
 
     <div class="card">
       <div class="card-header">
-        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseFour">
+        <button id="adminMenuButton4" class="btn btn-link" data-toggle="collapse" data-target="#collapseFour">
           <h3>Donner ou retirer les droits d'administration</h3>
         </button>
       </div>

@@ -44,10 +44,6 @@
   cursor: pointer;
 }
 
-.adminMenu {
-  font-size: 1.2em;
-}
-
 #connectionComment, #addPostButton {
   margin-bottom: 20px;
 }
@@ -70,4 +66,12 @@
 
 #submitTextEditor {
   margin-right: 20px;
+}
+
+#adminMenuButton1, #adminMenuButton2, #adminMenuButton3, #adminMenuButton4 {
+  text-decoration: none;
+}
+
+.registerAlert, .loginAlert {
+  margin-top: 20px;
 }

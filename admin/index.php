@@ -27,9 +27,6 @@ try {
         throw new Exception('Tous les champs ne sont pas remplis !');
     }
 
-    elseif ($_GET['action'] == 'postManagement')
-      postManagement();
-
     elseif ($_GET['action'] == 'editPost')
     {
       if (isset($_GET['postId']) && $_GET['postId'] > 0)
@@ -54,9 +51,6 @@ try {
         throw new Exception('Aucun identifiant de billet envoyé');
     }
 
-    elseif ($_GET['action'] == 'reportedComments')
-      reportedComments();
-
     elseif ($_GET['action'] == 'deleteComment')
     {
       if (isset($_GET['commentId']) && $_GET['commentId'] > 0)
@@ -64,12 +58,6 @@ try {
       else
         throw new Exception('Aucun identifiant de commentaire envoyé');
     }
-
-    elseif ($_GET['action'] == 'recentComments')
-      recentComments();
-
-    elseif ($_GET['action'] == 'rights')
-      rights();
 
     elseif ($_GET['action'] == 'changeRights')
     {

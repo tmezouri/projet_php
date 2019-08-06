@@ -61,10 +61,10 @@ function registration()
 	{
 		$hashed_pass = password_hash($_POST['pass'], PASSWORD_DEFAULT);
 		$newMember = $membersManager->addMember($_POST['pseudo'], $hashed_pass, $_POST['email']);
-		header('location: index.php?action=listPosts');
+		header('location: index.php?action=' . $_GET['action']);
 	}
 	else
-		throw new Exception('Ce nom d\'utilisateur est déjà pris');
+			header('Location: index.php?action=home&error=pseudo');
 }
 
 function connection()
@@ -78,7 +78,7 @@ function connection()
 		$isPasswordCorrect = password_verify($_COOKIE['pass'], $result['pass']);
 
 		if (!$result)
-			throw new Exception('Mauvais identifiant ou mot de passe !');
+			header('Location: index.php?action=home&error=login');
 		else
 		{
 			if ($isPasswordCorrect) {
@@ -86,10 +86,10 @@ function connection()
 					$_SESSION['id'] = $result['id'];
 					$_SESSION['pseudo'] = $result['pseudo'];
 					$_SESSION['rights'] = $result['rights'];
-					header('Location: ' . $_SERVER['HTTP_REFERER'] );
+					header('Location: index.php?action=home');
 			}
 			else {
-				throw new Exception('Mauvais identifiant ou mot de passe !');
+				header('Location: index.php?action=home&error=login');
 			}
 		}
 	}
@@ -100,7 +100,7 @@ function connection()
 		$isPasswordCorrect = password_verify($_POST['pass'], $result['pass']);
 
 		if (!$result)
-			throw new Exception('Mauvais identifiant ou mot de passe !');
+			header('Location: index.php?action=home&error=login');
 		else
 		{
 			if ($isPasswordCorrect) {
@@ -113,10 +113,10 @@ function connection()
 						setcookie('pseudo', $result['pseudo'], time() + 365*24*3600);
 						setcookie('pass', $_POST['pass'], time() + 365*24*3600);
 					}
-					header('Location: ' . $_SERVER['HTTP_REFERER'] );
+					header('Location: index.php?action=home');
 			}
 			else {
-				throw new Exception('Mauvais identifiant ou mot de passe !');
+				header('Location: index.php?action=home&error=login');
 			}
 		}
 	}

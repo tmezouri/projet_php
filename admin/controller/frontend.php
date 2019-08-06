@@ -44,14 +44,6 @@ function addPost($title, $content)
 		header('location: ../index.php?action=listPosts');
 }
 
-function postManagement()
-{
-	$postManager = new \JeanForteroche\Blog\Model\Admin\PostManager();
-	$posts = $postManager->getPosts();
-
-	require('view/postManagementView.php');
-}
-
 function editPost()
 {
 	$postManager = new \JeanForteroche\Blog\Model\Admin\PostManager();
@@ -81,18 +73,6 @@ function deletePost($postId)
 		header('location: index.php?action=adminPage&active=management');
 }
 
-function reportedComments()
-{
-	$commentManager = new \JeanForteroche\Blog\Model\Admin\CommentManager();
-	$reportedComments = $commentManager->reportedComments();
-	$number = $commentManager->getReportedCommentsNumber();
-
-	if($reportedComments === false)
-		throw new Exception('Aucun commentaires n\'a été signalé');
-	else
-		require('view/reportView.php');
-}
-
 function deleteComment($commentId)
 {
 	$commentManager = new \JeanForteroche\Blog\Model\Admin\CommentManager();
@@ -102,23 +82,6 @@ function deleteComment($commentId)
 		throw new Exception('Impossible de supprimer le commentaire !');
 	else
 		header('Location: ' . $_SERVER['HTTP_REFERER'] );
-}
-
-function recentComments()
-{
-	$commentManager = new \JeanForteroche\Blog\Model\Admin\CommentManager();
-	$comments = $commentManager->getRecentComments();
-	$number = $commentManager->getRecentCommentsNumber();
-
-	if($comments === false)
-		header('location: index.php?action=reportedComments');
-	else
-		require('view/recentCommentsView.php');
-}
-
-function rights()
-{
-		require('view/rightsView.php');
 }
 
 function changeRights($pseudo, $rights, $sessionPseudo)
@@ -153,7 +116,7 @@ function logOut()
 	setcookie('pseudo', '');
 	setcookie('pass', '');
 
-	header('location: index.php?action=listPosts');
+	header('location: ../index.php');
 }
 
 function search()
