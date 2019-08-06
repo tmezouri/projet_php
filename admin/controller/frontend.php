@@ -16,6 +16,14 @@ function listPosts()
 
 function adminPage()
 {
+	$postManager = new \JeanForteroche\Blog\Model\Admin\PostManager();
+	$commentManager = new \JeanForteroche\Blog\Model\Admin\CommentManager();
+	$reportedComments = $commentManager->reportedComments();
+	$reportedCommentsNumber = $commentManager->getReportedCommentsNumber();
+	$recentComments = $commentManager->getRecentComments();
+	$recentCommentsNumber = $commentManager->getRecentCommentsNumber();
+	$posts = $postManager->getPosts();
+
 	require('view/adminView.php');
 }
 
@@ -33,7 +41,7 @@ function addPost($title, $content)
 	if($post === false)
 		throw new Exception('Impossible d\'ajouter le post !');
 	else
-		header('location: index.php');
+		header('location: ../index.php?action=listPosts');
 }
 
 function postManagement()
@@ -70,7 +78,7 @@ function deletePost($postId)
 	if($affectedPost === false)
 		throw new Exception('Impossible de supprimer la publication !');
 	else
-		header('location: index.php?action=postManagement');
+		header('location: index.php?action=adminPage&active=management');
 }
 
 function reportedComments()
@@ -131,7 +139,7 @@ function changeRights($pseudo, $rights, $sessionPseudo)
 			if ($member === false)
 				throw new Exception('Impossible de changer les droits d\'administrateur');
 			else
-				header('location: index.php?action=rights&change=success');
+				header('location: index.php?active=rights&change=success');
 		}
 }
 
@@ -146,4 +154,9 @@ function logOut()
 	setcookie('pass', '');
 
 	header('location: index.php?action=listPosts');
+}
+
+function search()
+{
+	header('location: ../index.php?action=search&search=' . $_POST['search']);
 }

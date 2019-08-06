@@ -19,7 +19,9 @@
 		<?php
 			include 'navbar.php';
 		?>
+		<div id="background">
 
+		</div>
 		<?= $content ?>
 
 	</body>

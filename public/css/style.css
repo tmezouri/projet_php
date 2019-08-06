@@ -10,6 +10,10 @@
   text-decoration: none;
 }
 
+#titlePost {
+  display: inline;
+}
+
 #commentTitle {
   font-size: 1.4em;
 }
@@ -22,7 +26,7 @@
   margin-bottom: 30px;
 }
 
-#comment, #recentComment, #reportedComment, #rights {
+#comment, #recentComment, #reportedComment {
   padding: 20px;
   background-color: white;
 }
@@ -32,16 +36,7 @@
   font-size: 0.8em;
 }
 
-#reportComment, #delete, #modify, #deleteReport, #deleteRecentComment {
-  font-size: 0.8em;
-}
-
-#submitTextEditor {
-  margin-top: 30px;
-  font-size: 1.2em;
-}
-
-#delete, #deleteReport, #deleteRecentComment {
+#delete, #deleteTextEditor, #deleteReport, #deleteRecentComment {
   color: white;
 }
 
@@ -53,10 +48,26 @@
   font-size: 1.2em;
 }
 
-#recentCommentTitle, #reportedCommentTitle {
+#connectionComment, #addPostButton {
+  margin-bottom: 20px;
+}
+
+#modifyPost {
   margin-bottom: 30px;
 }
 
-#connectionComment, #addPostButton {
-  margin-bottom: 20px;
+#accordion {
+  margin-bottom: 80px;
+}
+
+#textEditorButtons {
+  margin: 15px 0 15px 0;
+}
+
+#deleteTextEditor, #submitTextEditor {
+  font-size: 1em;
+}
+
+#submitTextEditor {
+  margin-right: 20px;
 }

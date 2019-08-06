@@ -6,7 +6,7 @@
 	<div class="jumbotron">
 		<h3 id="recentCommentTitle">Nombre de commentaires poster aujourd'hui : <?= $number['nbComments']?></h3>
 		<?php
-		while ($data = $comments->fetch())
+		while ($data = $recentComments->fetch())
 		{
 			?>
 			<div id="recentComment" class="jumbotron">

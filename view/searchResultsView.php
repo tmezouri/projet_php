@@ -6,15 +6,6 @@
 	<h2>Résultats de la recherche:</h2>
 
 	<?php
-		if (isset($_SESSION['rights']) AND $_SESSION['rights'] === "admin")
-		{
-	?>
-			<a id="addPostButton" class='nav-link btn btn-dark col-md-4 col-sm-6' href='admin?action=textEditor'><i class="fas fa-plus"></i> Ajouter une nouvelle publication</a>
-	<?php
-		}
-	?>
-
-	<?php
 	while ($data = $searchResults->fetch())
 	{
 	?>

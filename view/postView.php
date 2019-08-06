@@ -9,6 +9,10 @@
 	<em>Poster le <?= $post['publicationDate'] ?></em>
 	<p><?= $post['content'] ?></p>
 
+	<?php if (isset($_SESSION['rights']) AND $_SESSION['rights'] === "admin") { ?>
+				<a id="modifyPost" class='btn btn-dark' href='admin/index.php?action=editPost&postId=<?= $post['id'] ?>'><i class="fas fa-pencil-alt"></i> Modifier</a>
+	<?php } ?>
+
 	<div id="comments" class="jumbotron">
 		<h4>Commentaires</h4>
 		<?php
@@ -18,7 +22,7 @@
 				<form id="commentForm" action="index.php?action=addComment&amp;postId=<?= $post['id'] ?>" method="post">
 					<input type="text" name="author" value="<?= $_SESSION['pseudo'];?>" hidden>
 					<div class="form-group">
-				    <textarea name="comment" class="form-control" rows="5"></textarea>
+				    <textarea name="comment" class="form-control" rows="5" required></textarea>
 				  </div>
 				  <button type="submit" class="btn btn-dark">Poster</button>
 				</form>

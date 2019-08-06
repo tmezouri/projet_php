@@ -79,7 +79,12 @@ try {
 
 		elseif ($_GET['action'] == 'search')
 		{
-			search();
+			if (isset($_GET['search']) && !empty($_GET['search']))
+				search($_GET['search']);
+			elseif (isset($_POST['search']) && !empty($_POST['search']))
+				search($_POST['search']);
+			else
+				throw new Exception('Le champs de recherche est vide');
 		}
   }
   else

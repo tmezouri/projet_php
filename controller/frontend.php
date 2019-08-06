@@ -22,7 +22,7 @@ function listPosts()
 
 function adminPage()
 {
-	header('location: admin');
+	header('location: admin/index.php?action=adminPage');
 }
 
 function post()
@@ -33,7 +33,10 @@ function post()
 	$post = $postManager->getPost($_GET['postId']);
 	$comments = $commentManager->getComments($_GET['postId']);
 
-	require('view/postView.php');
+	if($post === false)
+		throw new Exception('Publication introuvable');
+	else
+		require('view/postView.php');
 }
 
 function addComment($postId, $author, $comment)
@@ -146,11 +149,11 @@ function reportComment()
 	}
 }
 
-function search()
+function search($search)
 {
 	$postManager = new \JeanForteroche\Blog\Model\PostManager();
 
-	$search = htmlspecialchars($_POST['search']);
+	$search = htmlspecialchars($search);
 
 	$searchResults = $postManager->searchPost($search);
 
@@ -158,5 +161,4 @@ function search()
 		throw new Exception('Aucun résultats trouvé');
 	else
 		require('view/searchResultsView.php');
-
 }

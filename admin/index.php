@@ -81,6 +81,9 @@ try {
 
     elseif ($_GET['action'] == 'logOut')
       logOut();
+
+    elseif ($_GET['action'] == 'search')
+      search();
   }
   else
     adminPage();

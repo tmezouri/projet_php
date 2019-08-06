@@ -20,7 +20,10 @@
 	?>
 
 	<div class="jumbotron">
-		<a id="postLink" href="index.php?action=post&amp;postId=<?= $data['id'] ?>"><h3><?= htmlspecialchars($data['title'])?></h3></a>
+		<div class="test">
+			<a id="postLink" href="index.php?action=post&amp;postId=<?= $data['id'] ?>"><h3 id="titlePost"><?= htmlspecialchars($data['title'])?></h3></a>
+		</div>
+
 		<em>Poster le <?= $data['publicationDate'] ?></em>
 		<p><?= substr($data['content'],0, strpos($data['content'],'</p>',0)) ?></div></p>
 		<a class="btn btn-dark" href="index.php?action=post&amp;postId=<?= $data['id'] ?>">Lire la suite</a>
