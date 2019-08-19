@@ -14,6 +14,11 @@ function listPosts()
 	header('location: ../index.php?action=listPosts');
 }
 
+function contact()
+{
+	header('location: ../index.php?action=contact');
+}
+
 function adminPage()
 {
 	$postManager = new \JeanForteroche\Blog\Model\Admin\PostManager();

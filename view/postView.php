@@ -30,7 +30,7 @@
 			}
 			else {
 				?>
-				<a type='button' id="connectionComment" class='nav-link btn btn-dark col-md-4 col-sm-12' data-toggle='modal' href='' data-target='#myModal'>Connectez vous pour poster un commentaire</a>
+				<a id="connectionComment" class='nav-link btn btn-dark col-md-4 col-sm-12' data-toggle='modal' href='' data-target='#myModal'>Connectez vous pour poster un commentaire</a>
 				<?php
 			}
 		?>

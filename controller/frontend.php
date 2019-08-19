@@ -86,6 +86,7 @@ function connection()
 					$_SESSION['id'] = $result['id'];
 					$_SESSION['pseudo'] = $result['pseudo'];
 					$_SESSION['rights'] = $result['rights'];
+					$_SESSION['email'] = $result['email'];
 					header('Location: index.php?action=home');
 			}
 			else {
@@ -108,6 +109,7 @@ function connection()
 					$_SESSION['id'] = $result['id'];
 					$_SESSION['pseudo'] = $result['pseudo'];
 					$_SESSION['rights'] = $result['rights'];
+					$_SESSION['email'] = $result['email'];
 					if ($_POST['auto'])
 					{
 						setcookie('pseudo', $result['pseudo'], time() + 365*24*3600);
@@ -161,4 +163,27 @@ function search($search)
 		throw new Exception('Aucun résultats trouvé');
 	else
 		require('view/searchResultsView.php');
+}
+
+function contact()
+{
+	require('view/contactView.php');
+}
+
+function sendMail()
+{
+	ini_set( 'display_errors', 1 );
+	error_reporting( E_ALL );
+	$from = "contact@s763795710.onlinehome.fr";
+	$to = "mezouri.thibault@gmail.com";
+	$subject = $_POST['subject'];
+	$message = $_POST['message'];
+	$headers = 'From:' . $from . "\r\n" .
+			 'Reply-To:' . $_POST['mail'] . "\r\n" .
+			 'X-Mailer: PHP/' . phpversion();
+
+	if (mail($to,$subject,$message, $headers))
+					header('location: index.php?action=contact&success=true');
+	else
+					header('location: index.php?action=contact&success=false');
 }

@@ -9,7 +9,7 @@
         <a class="nav-link btn btn-dark" href="index.php?action=listPosts">Publications</a>
       </li>
       <li class="nav-item rounded">
-        <a class="nav-link btn btn-dark" href="#contact">Contact</a>
+        <a class="nav-link btn btn-dark" href="index.php?action=contact">Contact</a>
       </li>
       <?php
         if (isset($_SESSION['id']) AND isset($_SESSION['pseudo']))
@@ -23,7 +23,7 @@
         else {
           echo "
           <li class='nav-item rounded'>
-            <a type='button' class='nav-link btn btn-dark' data-toggle='modal' href='' data-target='#myModal'>Connexion</a>
+            <a class='nav-link btn btn-dark' data-toggle='modal' href='' data-target='#myModal'>Connexion</a>
           </li>
           ";
         }

@@ -13,6 +13,9 @@ try {
     if ($_GET['action'] == 'listPosts')
       listPosts();
 
+    elseif ($_GET['action'] == 'contact')
+      contact();
+
     elseif ($_GET['action'] == 'adminPage')
       adminPage();
 

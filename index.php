@@ -15,8 +15,11 @@ try {
 		if ($_GET['action'] == 'home')
       home();
 
-    if ($_GET['action'] == 'listPosts')
+    elseif ($_GET['action'] == 'listPosts')
       listPosts();
+
+		elseif ($_GET['action'] == 'contact')
+      contact();
 
     elseif ($_GET['action'] == 'addPost')
     {
@@ -82,6 +85,11 @@ try {
 				search($_POST['search']);
 			else
 				throw new Exception('Le champs de recherche est vide');
+		}
+
+		elseif ($_GET['action'] == 'sendMail')
+		{
+			sendMail();
 		}
   }
   else
