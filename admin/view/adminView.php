@@ -28,18 +28,7 @@
           <div class="jumbotron">
           	<h3><?= htmlspecialchars($dataPosts['title'])?></h3>
           	<em>Poster le <?= $dataPosts['publicationDate'] ?></em>
-            <p></p>
-            <?php
-            if(substr($dataPosts['content'], 0, 4) == '<div')
-            {
-              echo substr($dataPosts['content'], 0, strpos($dataPosts['content'],'</p>'));
-              echo substr($dataPosts['content'], strpos($dataPosts['content'],'</p>'), 4);
-              echo substr($dataPosts['content'], -6, 6);
-            }
-            else {
-              echo $dataPosts['content'];
-            }
-            ?>
+            <br>
             <a id="modify" class="btn btn-dark" href="index.php?action=editPost&amp;postId=<?= $dataPosts['id'] ?>"><i class="fas fa-pencil-alt"></i> Modifier</a>
           </div>
           <?php

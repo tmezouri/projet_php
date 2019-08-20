@@ -23,9 +23,18 @@
 		<div class="test">
 			<a id="postLink" href="index.php?action=post&amp;postId=<?= $data['id'] ?>"><h3 id="titlePost"><?= htmlspecialchars($data['title'])?></h3></a>
 		</div>
-
 		<em>Poster le <?= $data['publicationDate'] ?></em>
-		<p><?= substr($data['content'],0, strpos($data['content'],'</p>',0)) ?></div></p>
+		<?php
+		if(substr($data['content'], 0, 4) == '<div')
+		{
+			echo substr($data['content'], 0, strpos($data['content'],'</p>'));
+			echo substr($data['content'], strpos($data['content'],'</p>'), 4);
+			echo substr($data['content'], -6, 6);
+		}
+		else {
+			echo $dataPosts['content'];
+		}
+		?>
 		<a class="btn btn-dark" href="index.php?action=post&amp;postId=<?= $data['id'] ?>">Lire la suite</a>
 	</div>
 
