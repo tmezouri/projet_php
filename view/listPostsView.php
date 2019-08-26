@@ -32,7 +32,7 @@
 			echo substr($data['content'], -6, 6);
 		}
 		else {
-			echo $dataPosts['content'];
+			echo $data['content'];
 		}
 		?>
 		<a class="btn btn-dark" href="index.php?action=post&amp;postId=<?= $data['id'] ?>">Lire la suite</a>

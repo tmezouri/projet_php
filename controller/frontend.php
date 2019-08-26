@@ -163,6 +163,7 @@ function search($search)
 		throw new Exception('Aucun résultats trouvé');
 	else
 		require('view/searchResultsView.php');
+
 }
 
 function contact()
