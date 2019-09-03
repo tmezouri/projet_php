@@ -3,7 +3,7 @@
 	ob_start();
 ?>
 
-<div class="container">
+<div class="container jumbotron">
 		<h2>Contact</h2>
 		<hr>
 		<form action="index.php?action=sendMail" method="post">
