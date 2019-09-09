@@ -2,7 +2,7 @@
 
 <?php ob_start(); ?>
 
-<div class="container">
+<div class="container jumbotron">
 		<?php
 			if ($_GET['action'] == 'editPost')
 			{
@@ -19,7 +19,7 @@
 		?>
 
 		<div class="form-group">
-			<label>Titre de la publication: </label>
+			<h3>Titre de la publication: </h3>
 			<input class="form-control" type="text" name="title"
 			<?php if ($_GET['action'] == 'editPost')
 				{

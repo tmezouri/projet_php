@@ -69,10 +69,6 @@ body {
   margin: 15px 0 15px 0;
 }
 
-#deleteTextEditor, #submitTextEditor {
-  font-size: 1em;
-}
-
 #submitTextEditor {
   margin-right: 20px;
 }
